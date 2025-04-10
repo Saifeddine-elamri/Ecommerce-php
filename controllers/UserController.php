@@ -1,5 +1,7 @@
 <?php
 require_once 'models/User.php';
+require_once 'models/Product.php';
+require_once 'models/Cart.php';
 
 class UserController {
     public function login() {
@@ -64,6 +66,43 @@ class UserController {
         $userModel = new User();
         $orders = $userModel->getOrders($_SESSION['user_id']);
         require_once 'views/auth/orders.php';
+    }
+
+    public function profile() {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login?error=login_required');
+            exit;
+        }
+        $userModel = new User();
+        $user = $userModel->getById($_SESSION['user_id']);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $this->verifyCsrfToken()) {
+            $username = trim($_POST['username'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+
+            if (empty($username) || empty($email)) {
+                $error = "Veuillez remplir tous les champs obligatoires.";
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $error = "Adresse email invalide.";
+            } else {
+                if ($userModel->updateProfile($_SESSION['user_id'], $username, $email, $password)) {
+                    $_SESSION['username'] = $username;
+                    $success = "Profil mis à jour avec succès !";
+                } else {
+                    $error = "Erreur lors de la mise à jour. Vérifiez les doublons.";
+                }
+            }
+        }
+        require_once 'views/auth/profile.php';
+    }
+
+    private function verifyCsrfToken() {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            header('Location: /products?error=invalid_csrf');
+            exit;
+        }
+        return true;
     }
 }
 ?>

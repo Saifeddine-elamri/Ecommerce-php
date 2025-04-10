@@ -3,15 +3,25 @@ class Router {
     private $routes = [
         '/' => ['controller' => 'ProductController', 'action' => 'index'],
         '/products' => ['controller' => 'ProductController', 'action' => 'index'],
+        '/product' => ['controller' => 'ProductController', 'action' => 'show'],
         '/cart' => ['controller' => 'CartController', 'action' => 'index'],
         '/login' => ['controller' => 'UserController', 'action' => 'login'],
         '/register' => ['controller' => 'UserController', 'action' => 'register'],
         '/logout' => ['controller' => 'UserController', 'action' => 'logout'],
         '/orders' => ['controller' => 'UserController', 'action' => 'orders'],
+        '/profile' => ['controller' => 'UserController', 'action' => 'profile'],
+        '/admin' => ['controller' => 'AdminController', 'action' => 'index'],
+        '/admin/products' => ['controller' => 'AdminController', 'action' => 'products'],
+        '/admin/product/add' => ['controller' => 'AdminController', 'action' => 'addProduct'],
+        '/admin/product/edit' => ['controller' => 'AdminController', 'action' => 'editProduct'],
+        '/admin/orders' => ['controller' => 'AdminController', 'action' => 'orders'],
         '/cart/add' => ['controller' => 'CartController', 'action' => 'add'],
         '/cart/remove' => ['controller' => 'CartController', 'action' => 'remove'],
         '/order' => ['controller' => 'CartController', 'action' => 'order'],
-        '/search' => ['controller' => 'ProductController', 'action' => 'search']
+        '/search' => ['controller' => 'ProductController', 'action' => 'search'],
+        '/review/add' => ['controller' => 'ProductController', 'action' => 'addReview'],
+        '/favorite/add' => ['controller' => 'ProductController', 'action' => 'addFavorite'],
+        '/favorite/remove' => ['controller' => 'ProductController', 'action' => 'removeFavorite']
     ];
 
     public function route() {
