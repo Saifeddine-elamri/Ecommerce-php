@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background: #333;
+    padding: 1em;
+}
+nav a {
+    color: white;
+    margin-right: 1em;
+    text-decoration: none;
+}
+.products, .cart {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+}
+.product, .cart-item {
+    border: 1px solid #ddd;
+    margin: 1em;
+    padding: 1em;
+    width: 200px;
+}
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.btn:hover {
+    background: #0056b3;
+}
+button {
+    padding: 0.5em 1em;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background: #218838;
+}
+.btn-delete {
+    background: #dc3545;
+}
+.btn-delete:hover {
+    background: #c82333;
+}
+input[type="number"] {
+    width: 60px;
+    padding: 0.5em;
+    margin-right: 0.5em;
+}
