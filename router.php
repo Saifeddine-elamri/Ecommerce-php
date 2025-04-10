@@ -5,9 +5,13 @@ class Router {
         '/products' => ['controller' => 'ProductController', 'action' => 'index'],
         '/cart' => ['controller' => 'CartController', 'action' => 'index'],
         '/login' => ['controller' => 'UserController', 'action' => 'login'],
+        '/register' => ['controller' => 'UserController', 'action' => 'register'],
+        '/logout' => ['controller' => 'UserController', 'action' => 'logout'],
+        '/orders' => ['controller' => 'UserController', 'action' => 'orders'],
         '/cart/add' => ['controller' => 'CartController', 'action' => 'add'],
         '/cart/remove' => ['controller' => 'CartController', 'action' => 'remove'],
-        '/order' => ['controller' => 'CartController', 'action' => 'order']
+        '/order' => ['controller' => 'CartController', 'action' => 'order'],
+        '/search' => ['controller' => 'ProductController', 'action' => 'search']
     ];
 
     public function route() {

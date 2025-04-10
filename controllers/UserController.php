@@ -3,7 +3,67 @@ require_once 'models/User.php';
 
 class UserController {
     public function login() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = trim($_POST['username'] ?? '');
+            $password = $_POST['password'] ?? '';
+            if (empty($username) || empty($password)) {
+                $error = "Veuillez remplir tous les champs.";
+            } else {
+                $userModel = new User();
+                $user = $userModel->login($username, $password);
+                if ($user) {
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['username'] = $user['username'];
+                    header('Location: /products?success=logged_in');
+                    exit;
+                } else {
+                    $error = "Nom d'utilisateur ou mot de passe incorrect.";
+                }
+            }
+        }
         require_once 'views/auth/login.php';
+    }
+
+    public function register() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = trim($_POST['username'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+            $confirm_password = $_POST['confirm_password'] ?? '';
+
+            if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
+                $error = "Veuillez remplir tous les champs.";
+            } elseif ($password !== $confirm_password) {
+                $error = "Les mots de passe ne correspondent pas.";
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $error = "Adresse email invalide.";
+            } else {
+                $userModel = new User();
+                if ($userModel->register($username, $email, $password)) {
+                    header('Location: /login?success=registered');
+                    exit;
+                } else {
+                    $error = "Ce nom d'utilisateur ou email est déjà pris.";
+                }
+            }
+        }
+        require_once 'views/auth/register.php';
+    }
+
+    public function logout() {
+        session_destroy();
+        header('Location: /login?success=logged_out');
+        exit;
+    }
+
+    public function orders() {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login?error=login_required');
+            exit;
+        }
+        $userModel = new User();
+        $orders = $userModel->getOrders($_SESSION['user_id']);
+        require_once 'views/auth/orders.php';
     }
 }
 ?>
