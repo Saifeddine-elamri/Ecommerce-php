@@ -12,7 +12,7 @@
         <!-- Liste des actions avec transitions avancées -->
         <ul class="space-y-8">
             <!-- Gérer les produits -->
-            <li class="transition-all duration-300 hover:bg-indigo-100 rounded-lg">
+            <li class="transition-all duration-300 hover:bg-indigo-100 rounded-lg shadow-lg hover:shadow-xl">
                 <a href="/admin/products" class="block bg-indigo-600 text-white py-4 px-8 rounded-xl text-lg font-medium shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all transform hover:scale-105 focus:outline-none relative"
                     aria-label="Accéder à la gestion des produits">
                     <span class="mr-3 text-xl">📦</span> Gérer les produits
@@ -24,7 +24,7 @@
             </li>
 
             <!-- Gérer les commandes -->
-            <li class="transition-all duration-300 hover:bg-green-100 rounded-lg">
+            <li class="transition-all duration-300 hover:bg-green-100 rounded-lg shadow-lg hover:shadow-xl">
                 <a href="/admin/orders" class="block bg-green-600 text-white py-4 px-8 rounded-xl text-lg font-medium shadow-md hover:bg-green-700 hover:shadow-lg transition-all transform hover:scale-105 focus:outline-none relative"
                     aria-label="Accéder à la gestion des commandes">
                     <span class="mr-3 text-xl">🛒</span> Gérer les commandes
@@ -36,7 +36,7 @@
             </li>
 
             <!-- Gérer les utilisateurs -->
-            <li class="transition-all duration-300 hover:bg-yellow-100 rounded-lg">
+            <li class="transition-all duration-300 hover:bg-yellow-100 rounded-lg shadow-lg hover:shadow-xl">
                 <a href="/admin/users" class="block bg-yellow-600 text-white py-4 px-8 rounded-xl text-lg font-medium shadow-md hover:bg-yellow-700 hover:shadow-lg transition-all transform hover:scale-105 focus:outline-none relative"
                     aria-label="Accéder à la gestion des utilisateurs">
                     <span class="mr-3 text-xl">👤</span> Gérer les utilisateurs
@@ -48,7 +48,7 @@
             </li>
 
             <!-- Voir les rapports -->
-            <li class="transition-all duration-300 hover:bg-blue-100 rounded-lg">
+            <li class="transition-all duration-300 hover:bg-blue-100 rounded-lg shadow-lg hover:shadow-xl">
                 <a href="/admin/reports" class="block bg-blue-600 text-white py-4 px-8 rounded-xl text-lg font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-all transform hover:scale-105 focus:outline-none relative"
                     aria-label="Accéder aux rapports">
                     <span class="mr-3 text-xl">📊</span> Voir les rapports
