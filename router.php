@@ -1,5 +1,6 @@
-<?php
-class Router {
+<?php 
+
+   class Router {
     private $routes = [
         '/' => ['controller' => 'ProductController', 'action' => 'index'],
         '/products' => ['controller' => 'ProductController', 'action' => 'index'],
@@ -15,6 +16,8 @@ class Router {
         '/admin/product/add' => ['controller' => 'AdminController', 'action' => 'addProduct'],
         '/admin/product/edit' => ['controller' => 'AdminController', 'action' => 'editProduct'],
         '/admin/orders' => ['controller' => 'AdminController', 'action' => 'orders'],
+        '/admin/orders/(\d+)' => ['controller' => 'AdminController', 'action' => 'viewOrder'], 
+        '/admin/users' => ['controller' => 'AdminController', 'action' => 'users'],
         '/cart/add' => ['controller' => 'CartController', 'action' => 'add'],
         '/cart/remove' => ['controller' => 'CartController', 'action' => 'remove'],
         '/order' => ['controller' => 'CartController', 'action' => 'order'],
@@ -23,23 +26,29 @@ class Router {
         '/favorite/add' => ['controller' => 'ProductController', 'action' => 'addFavorite'],
         '/favorite/remove' => ['controller' => 'ProductController', 'action' => 'removeFavorite'],
         '/checkout' => ['controller' => 'CartController', 'action' => 'checkout']
-
     ];
 
     public function route() {
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        
-        if (array_key_exists($path, $this->routes)) {
-            $controllerName = $this->routes[$path]['controller'];
-            $action = $this->routes[$path]['action'];
-            
-            require_once "controllers/$controllerName.php";
-            $controller = new $controllerName();
-            $controller->$action();
-        } else {
-            header("HTTP/1.0 404 Not Found");
-            echo "Page not found";
+
+        // Vérifier les routes
+        foreach ($this->routes as $route => $config) {
+            if (preg_match("#^$route$#", $path, $matches)) {
+                array_shift($matches); // Retirer le match complet (l'URL)
+                $controllerName = $config['controller'];
+                $action = $config['action'];
+
+                require_once "controllers/$controllerName.php";
+                $controller = new $controllerName();
+
+                // Appeler la méthode avec les paramètres dynamiques si présents
+                call_user_func_array([$controller, $action], $matches);
+                return;
+            }
         }
+
+        // Si aucune route ne correspond, afficher une erreur 404
+        header("HTTP/1.0 404 Not Found");
+        echo "Page not found";
     }
 }
-?>

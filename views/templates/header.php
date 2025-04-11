@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Premium</title>
+    <title>E-commerce PHP</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -142,11 +142,6 @@
 
     <!-- Main Navigation -->
     <header class="sticky top-0 z-50">
-        <!-- Top Announcement Bar -->
-        <div class="bg-indigo-900 text-white text-center py-2 px-4 text-sm">
-            <p>🎉 Livraison gratuite à partir de 50€ | Retours faciles sous 30 jours</p>
-        </div>
-        
         <!-- Main Nav -->
         <nav class="nav-gradient text-white shadow-lg">
             <div class="container mx-auto px-4">
@@ -225,7 +220,7 @@
                                     <div class="w-8 h-8 rounded-full bg-indigo-300 flex items-center justify-center text-indigo-800 font-semibold">
                                         <?php echo substr($_SESSION['username'], 0, 1); ?>
                                     </div>
-                                    <span class="nav-link">Mon compte</span>
+                                    <span class="nav-link"><?php echo $_SESSION['username']; ?></span>
                                     <i class="fas fa-chevron-down text-xs ml-1 transition-transform duration-200 dropdown-arrow"></i>
                                 </button>
                                 <div class="dropdown-menu absolute right-0 mt-2 w-56 bg-white rounded-md shadow-xl z-50 py-1 text-gray-800">

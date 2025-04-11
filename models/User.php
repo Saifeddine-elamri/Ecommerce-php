@@ -78,5 +78,15 @@ class User {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+        // Nouvelle méthode pour récupérer tous les utilisateurs
+    public function getAllUsers() {
+        $stmt = $this->conn->prepare("SELECT * FROM users ORDER BY username ASC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
 }
 ?>

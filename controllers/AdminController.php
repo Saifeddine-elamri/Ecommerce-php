@@ -2,6 +2,7 @@
 require_once 'models/Product.php';
 require_once 'models/User.php';
 require_once 'models/Cart.php';
+require_once 'models/Order.php';
 
 class AdminController {
     private function checkAdmin() {
@@ -101,6 +102,27 @@ class AdminController {
             exit;
         }
         return true;
+    }
+
+    public function users() {
+        // Vérifier que l'utilisateur est authentifié et a les droits d'accès
+        $this->checkAdmin();
+        $userModel = new User();
+
+        // Exemple de récupération des utilisateurs
+        $users = $userModel->getAllUsers();  // Supposons que tu as une méthode pour récupérer tous les utilisateurs
+
+        // Charger la vue
+        require_once 'views/admin/users.php';
+    }
+
+    public function viewOrder($userId) {
+        // Récupérer les commandes de l'utilisateur $userId
+        $orderModel = new Order();
+        $orders = $orderModel->getByUserId($userId);
+        
+        // Afficher la vue
+        require_once 'views/admin/user_orders.php';
     }
 }
 ?>
