@@ -21,7 +21,9 @@ class Router {
         '/search' => ['controller' => 'ProductController', 'action' => 'search'],
         '/review/add' => ['controller' => 'ProductController', 'action' => 'addReview'],
         '/favorite/add' => ['controller' => 'ProductController', 'action' => 'addFavorite'],
-        '/favorite/remove' => ['controller' => 'ProductController', 'action' => 'removeFavorite']
+        '/favorite/remove' => ['controller' => 'ProductController', 'action' => 'removeFavorite'],
+        '/checkout' => ['controller' => 'CartController', 'action' => 'checkout']
+
     ];
 
     public function route() {
