@@ -18,6 +18,7 @@
         '/admin/orders' => ['controller' => 'AdminController', 'action' => 'orders'],
         '/admin/orders/(\d+)' => ['controller' => 'AdminController', 'action' => 'viewOrder'], 
         '/admin/users' => ['controller' => 'AdminController', 'action' => 'users'],
+        '/admin/user/(\d+)/edit' => ['controller' => 'AdminController', 'action' => 'editUser'],
         '/cart/add' => ['controller' => 'CartController', 'action' => 'add'],
         '/cart/remove' => ['controller' => 'CartController', 'action' => 'remove'],
         '/order' => ['controller' => 'CartController', 'action' => 'order'],

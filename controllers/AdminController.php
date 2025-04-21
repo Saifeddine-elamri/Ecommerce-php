@@ -124,5 +124,34 @@ class AdminController {
         // Afficher la vue
         require_once 'views/admin/user_orders.php';
     }
+
+
+    public function editUser($userId) {
+        $this->checkAdmin();
+        $userModel = new User();
+        
+        $user = $userModel->getById($userId);
+        if (!$user) {
+            header('Location: /admin/users?error=user_not_found');
+            exit;
+        }
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $this->verifyCsrfToken()) {
+            $name = trim($_POST['name'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $isAdmin = isset($_POST['is_admin']) ? 1 : 0;
+    
+            if (empty($name) || empty($email)) {
+                $error = "Tous les champs doivent être remplis.";
+            } else {
+                $userModel->updateUser($userId, $name, $email, $isAdmin);
+                header("Location: /admin/users?success=user_updated");
+                exit;
+            }
+        }
+    
+        require 'views/admin/edit_user.php';
+    }
+    
 }
 ?>

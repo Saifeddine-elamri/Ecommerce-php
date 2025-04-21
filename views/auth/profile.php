@@ -73,12 +73,14 @@
                     Mettre à jour mon profil
                 </button>
             </div>
-            
-            <div class="text-center pt-2">
+            <?php if ($user['is_admin']): ?>
+                <div class="text-center pt-2">
                 <a href="/admin" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition duration-200">
                     Retour au tableau de bord
                 </a>
             </div>
+            <?php endif; ?>
+
         </form>
     </div>
 </div>
